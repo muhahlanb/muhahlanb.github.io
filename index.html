@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REGO - Modern Laptop Parts, Accessories and Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Basic Styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
+
+    /* Navbar Styling */
+    header { position: relative; width: 100%; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0d9378;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #333;
+      font-size: 1rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover { color: #0d9378; }
+
+    /* Hamburger Menu for Mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin-bottom: 4px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        transition: right 0.3s ease;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+      }
+      nav ul.active { right: 0; }
+      .hamburger { display: flex; }
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero h1 { 
+      font-size: 4rem; 
+      margin-bottom: 20px; 
+      color: #0d9378;
+    }
+    .hero p { 
+      font-size: 1.5rem; 
+      margin-bottom: 30px; 
+      color: #555;
+    }
+    .hero a.btn { 
+      background: #0d9378; 
+      color: #fff; 
+      padding: 15px 30px; 
+      font-size: 1.2rem; 
+      font-weight: 600; 
+      border-radius: 30px; 
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .hero a.btn:hover { 
+      background: #0b7b68; 
+    }
+
+    /* Sections */
+    section { padding: 80px 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* Services Section */
+    .services { background: #fff; }
+    .services h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .services .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #fff;
+      padding: 40px 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { 
+      margin-bottom: 15px; 
+      font-size: 1.8rem; 
+      color: #0d9378;
+    }
+    .card p { 
+      font-size: 1rem; 
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* About Section */
+    .about { background: #fff; }
+    .about .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .about .text { flex: 1; min-width: 300px; }
+    .about .text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #0d9378;
+    }
+    .about .text p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .about .image { flex: 1; min-width: 300px; }
+    .about .image img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* Produk Sparepart Section */
+    .produk { background: #fff; }
+    .produk h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .produk-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .produk-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .produk-card:hover { transform: translateY(-5px); }
+    .produk-card img {
+      width: 100%;
+      display: block;
+    }
+    .produk-card h3 {
+      margin: 15px;
+      font-size: 1.5rem;
+      color: #0d9378;
+    }
+    .produk-card p {
+      margin: 0 15px 15px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    /* Promo Section */
+    .promo { background: #fff; }
+    .promo h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .promo-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .promo-card {
+      background: #fff;
+      padding: 30px 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .promo-card:hover { transform: translateY(-5px); }
+    .promo-card h3 {
+      margin-bottom: 10px;
+      color: #0d9378;
+    }
+    .promo-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* FAQ Section */
+    .faq { background: #fff; }
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    .faq-item h3 {
+      font-size: 1.2rem;
+      color: #0d9378;
+      margin-bottom: 10px;
+    }
+    .faq-item p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Partner Section */
+    .partner { background: #fff; }
+    .partner h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .partner-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .partner-logos img {
+      max-width: 150px;
+      transition: transform 0.3s ease;
+    }
+    .partner-logos img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Lokasi Section */
+    .lokasi { background: #fff; }
+    .lokasi h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .lokasi .map {
+      width: 100%;
+      height: 400px;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* Testimoni Section */
+    .testimoni { background: #fff; }
+    .testimoni h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      color: #0d9378;
+    }
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .testimonial-card {
+      background: #fff;
+      padding: 30px 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+    .testimonial-card:hover { transform: translateY(-5px); }
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .testimonial-card span {
+      font-weight: 600;
+      color: #0d9378;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: #0d9378;
+      color: #fff;
+      text-align: center;
+    }
+    .contact h2 { 
+      font-size: 2.8rem; 
+      margin-bottom: 20px; 
+    }
+    .contact p { 
+      font-size: 1.2rem; 
+      margin-bottom: 30px; 
+    }
+    .contact a.btn { 
+      background: #fff; 
+      color: #0d9378; 
+      padding: 15px 30px; 
+      font-size: 1.1rem; 
+      font-weight: 600; 
+      border-radius: 30px; 
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .contact a.btn:hover { 
+      background: #e0f2f1; 
+    }
+
+    /* Footer */
+    footer {
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      color: #555;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.2rem; }
+      nav .container { flex-direction: row; justify-content: space-between; }
+      .about .content { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navbar -->
+  <header>
+    <nav>
+      <div class="container">
+        <div class="logo" id="nav-logo"></div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul id="nav-links">
+          <!-- Menu akan diisi melalui JSON -->
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <!-- Konten hero akan diisi melalui JSON -->
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 id="services-title"></h2>
+      <div class="cards" id="services-cards">
+        <!-- Kartu layanan di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="content">
+        <div class="text">
+          <h2 id="about-title"></h2>
+          <p id="about-desc"></p>
+        </div>
+        <div class="image">
+          <img id="about-img" src="" alt="Tentang REGO">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produk Sparepart Section -->
+  <section id="produk" class="produk">
+    <div class="container">
+      <h2 id="produk-title"></h2>
+      <div class="produk-cards" id="produk-cards">
+        <!-- Produk di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Section -->
+  <section id="promo" class="promo">
+    <div class="container">
+      <h2 id="promo-title"></h2>
+      <div class="promo-cards" id="promo-cards">
+        <!-- Promo di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 id="faq-title"></h2>
+      <div id="faq-items">
+        <!-- FAQ di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Section -->
+  <section id="partner" class="partner">
+    <div class="container">
+      <h2 id="partner-title"></h2>
+      <div class="partner-logos" id="partner-logos">
+        <!-- Logo partner di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lokasi Section -->
+  <section id="lokasi" class="lokasi">
+    <div class="container">
+      <h2 id="lokasi-title"></h2>
+      <iframe class="map" id="lokasi-map" src="" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- Testimoni Section -->
+  <section id="testimoni" class="testimoni">
+    <div class="container">
+      <h2 id="testimoni-title"></h2>
+      <div class="testimonial-cards" id="testimonial-cards">
+        <!-- Testimoni di-generate dari JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 id="contact-title"></h2>
+      <p id="contact-desc"></p>
+      <a id="contact-btn" class="btn" href="" target="_blank"></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p id="footer-text"></p>
+    </div>
+  </footer>
+
+  <!-- JSON Content -->
+  <script id="content-json" type="application/json">
+  {
+    "nav": {
+      "logo": "REGO",
+      "menu": [
+        {"name": "Layanan", "link": "#services"},
+        {"name": "Tentang", "link": "#about"},
+        {"name": "Produk", "link": "#produk"},
+        {"name": "Promo", "link": "#promo"},
+        {"name": "FAQ", "link": "#faq"},
+        {"name": "Partner", "link": "#partner"},
+        {"name": "Lokasi", "link": "#lokasi"},
+        {"name": "Testimoni", "link": "#testimoni"},
+        {"name": "Kontak", "link": "#contact"}
+      ]
+    },
+    "hero": {
+      "title": "REGO",
+      "subtitle": "Laptop Parts, Accessories and Service",
+      "btnText": "Pesan Sekarang",
+      "btnLink": "#contact"
+    },
+    "services": {
+      "title": "Layanan Kami",
+      "cards": [
+        {"title": "Perbaikan Laptop", "desc": "Teknisi kami profesional dan siap memperbaiki segala jenis kerusakan laptop."},
+        {"title": "Sparepart Asli", "desc": "Kami menyediakan sparepart original dengan kualitas terbaik untuk laptop Anda."},
+        {"title": "Aksesori Laptop", "desc": "Dari case hingga cooling pad, semua aksesori tersedia untuk menunjang performa laptop."}
+      ]
+    },
+    "about": {
+      "title": "Tentang REGO",
+      "desc": "REGO hadir sebagai solusi modern untuk kebutuhan laptop Anda. Kami menyediakan sparepart, aksesori, dan layanan perbaikan dengan standar internasional. Dengan tim teknisi handal, setiap perbaikan dilakukan dengan ketelitian tinggi dan pelayanan terbaik.",
+      "img": "https://source.unsplash.com/600x400/?laptop,repair"
+    },
+    "produk": {
+      "title": "Produk Sparepart",
+      "cards": [
+        {"title": "LCD", "price": "Rp 1.200.000", "img": "https://source.unsplash.com/400x300/?laptop,display"},
+        {"title": "Baterai", "price": "Rp 900.000", "img": "https://source.unsplash.com/400x300/?laptop,battery"},
+        {"title": "Charger", "price": "Rp 400.000", "img": "https://source.unsplash.com/400x300/?laptop,charger"},
+        {"title": "SSD", "price": "Rp 1.500.000", "img": "https://source.unsplash.com/400x300/?laptop,ssd"},
+        {"title": "RAM", "price": "Rp 800.000", "img": "https://source.unsplash.com/400x300/?laptop,ram"}
+      ]
+    },
+    "promo": {
+      "title": "Promo & Diskon",
+      "cards": [
+        {"title": "Diskon 10% untuk Servis Pertama", "desc": "Nikmati potongan harga untuk perbaikan laptop pertama Anda di REGO!"},
+        {"title": "Beli Sparepart Minimal 2, Gratis Ongkir", "desc": "Dapatkan gratis ongkir untuk pembelian sparepart minimal 2 item."},
+        {"title": "Special Bundle Aksesori", "desc": "Harga spesial untuk paket aksesori laptop pilihan Anda!"}
+      ]
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "items": [
+        {"question": "Apakah sparepart yang dijual original?", "answer": "Semua sparepart yang kami sediakan adalah original dan telah melalui quality control."},
+        {"question": "Berapa lama waktu perbaikan laptop?", "answer": "Waktu perbaikan berkisar antara 1-3 hari kerja, tergantung tingkat kerusakan."},
+        {"question": "Apakah REGO memberikan garansi untuk servis?", "answer": "Ya, kami memberikan garansi untuk setiap perbaikan dan sparepart yang kami pasang."}
+      ]
+    },
+    "partner": {
+      "title": "Partner Kami",
+      "logos": [
+        {"img": "https://via.placeholder.com/150?text=Partner+1", "alt": "Partner 1"},
+        {"img": "https://via.placeholder.com/150?text=Partner+2", "alt": "Partner 2"},
+        {"img": "https://via.placeholder.com/150?text=Partner+3", "alt": "Partner 3"},
+        {"img": "https://via.placeholder.com/150?text=Partner+4", "alt": "Partner 4"}
+      ]
+    },
+    "lokasi": {
+      "title": "Lokasi Toko",
+      "mapSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.768343726231!2d110.36950131617528!3d-7.781665299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a58c0e8a2cdb3%3A0xa6b96f3ddf9a45a8!2sTaman%20Sari%2C%20Yogyakarta!5e0!3m2!1sid!2sid!4v1618231425563!5m2!1sid!2sid"
+    },
+    "testimoni": {
+      "title": "Testimoni Pelanggan",
+      "cards": [
+        {"quote": "REGO itu juara, servisnya cepat dan sparepart aslinya terjamin. Solusi terbaik untuk laptop saya!", "author": "- Budi, Pelanggan Setia"},
+        {"quote": "Awalnya ragu, tapi ternyata REGO sangat profesional. Dari konsultasi hingga perbaikan, semua memuaskan!", "author": "- Siti, Mahasiswi"},
+        {"quote": "Pelayanan memuaskan dan proses perbaikan cepat. Rekomendasi banget untuk semua kebutuhan laptop!", "author": "- Ardi, Karyawan"}
+      ]
+    },
+    "contact": {
+      "title": "Hubungi Kami",
+      "desc": "Ingin konsultasi atau booking servis? Langsung chat via WhatsApp atau kunjungi toko kami!",
+      "btnText": "Chat di WhatsApp",
+      "btnLink": "https://wa.me/628123456789"
+    },
+    "footer": {
+      "text": "&copy; 2025 REGO - Laptop Parts, Accessories and Service. All Rights Reserved."
+    }
+  }
+  </script>
+
+  <!-- JavaScript untuk mengambil JSON dan menyuntikkan konten -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const content = JSON.parse(document.getElementById('content-json').textContent);
+
+      // Navbar
+      document.getElementById('nav-logo').textContent = content.nav.logo;
+      const navLinks = document.getElementById('nav-links');
+      content.nav.menu.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = item.link;
+        a.textContent = item.name;
+        li.appendChild(a);
+        navLinks.appendChild(li);
+      });
+
+      // Hero Section
+      const hero = document.getElementById('hero');
+      hero.innerHTML = `
+        <h1>${content.hero.title}</h1>
+        <p>${content.hero.subtitle}</p>
+        <a class="btn" href="${content.hero.btnLink}">${content.hero.btnText}</a>
+      `;
+
+      // Services Section
+      document.getElementById('services-title').textContent = content.services.title;
+      const servicesCards = document.getElementById('services-cards');
+      content.services.cards.forEach(card => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `<h3>${card.title}</h3><p>${card.desc}</p>`;
+        servicesCards.appendChild(div);
+      });
+
+      // About Section
+      document.getElementById('about-title').textContent = content.about.title;
+      document.getElementById('about-desc').textContent = content.about.desc;
+      document.getElementById('about-img').src = content.about.img;
+
+      // Produk Section
+      document.getElementById('produk-title').textContent = content.produk.title;
+      const produkCards = document.getElementById('produk-cards');
+      content.produk.cards.forEach(card => {
+        const div = document.createElement('div');
+        div.classList.add('produk-card');
+        div.innerHTML = `<img src="${card.img}" alt="${card.title}">
+                         <h3>${card.title}</h3>
+                         <p>Harga: ${card.price}</p>`;
+        produkCards.appendChild(div);
+      });
+
+      // Promo Section
+      document.getElementById('promo-title').textContent = content.promo.title;
+      const promoCards = document.getElementById('promo-cards');
+      content.promo.cards.forEach(card => {
+        const div = document.createElement('div');
+        div.classList.add('promo-card');
+        div.innerHTML = `<h3>${card.title}</h3><p>${card.desc}</p>`;
+        promoCards.appendChild(div);
+      });
+
+      // FAQ Section
+      document.getElementById('faq-title').textContent = content.faq.title;
+      const faqItems = document.getElementById('faq-items');
+      content.faq.items.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('faq-item');
+        div.innerHTML = `<h3>${item.question}</h3><p>${item.answer}</p>`;
+        faqItems.appendChild(div);
+      });
+
+      // Partner Section
+      document.getElementById('partner-title').textContent = content.partner.title;
+      const partnerLogos = document.getElementById('partner-logos');
+      content.partner.logos.forEach(logo => {
+        const img = document.createElement('img');
+        img.src = logo.img;
+        img.alt = logo.alt;
+        partnerLogos.appendChild(img);
+      });
+
+      // Lokasi Section
+      document.getElementById('lokasi-title').textContent = content.lokasi.title;
+      document.getElementById('lokasi-map').src = content.lokasi.mapSrc;
+
+      // Testimoni Section
+      document.getElementById('testimoni-title').textContent = content.testimoni.title;
+      const testimonialCards = document.getElementById('testimonial-cards');
+      content.testimoni.cards.forEach(card => {
+        const div = document.createElement('div');
+        div.classList.add('testimonial-card');
+        div.innerHTML = `<p>"${card.quote}"</p><span>${card.author}</span>`;
+        testimonialCards.appendChild(div);
+      });
+
+      // Contact Section
+      document.getElementById('contact-title').textContent = content.contact.title;
+      document.getElementById('contact-desc').textContent = content.contact.desc;
+      const contactBtn = document.getElementById('contact-btn');
+      contactBtn.textContent = content.contact.btnText;
+      contactBtn.href = content.contact.btnLink;
+
+      // Footer
+      document.getElementById('footer-text').innerHTML = content.footer.text;
+    });
+
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
