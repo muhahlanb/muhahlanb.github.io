@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="REGO - Modern Laptop Parts, Accessories and Service. Solusi terbaik untuk sparepart, aksesori dan perbaikan laptop dengan teknisi profesional.">
+  <meta name="keywords" content="REGO, laptop parts, sparepart laptop, aksesori laptop, perbaikan laptop, service laptop">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.rego.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="REGO - Modern Laptop Parts, Accessories and Service">
+  <meta property="og:description" content="Solusi terbaik untuk sparepart, aksesori dan perbaikan laptop dengan teknisi profesional.">
+  <meta property="og:image" content="https://source.unsplash.com/1200x630/?laptop,repair">
+  <meta property="og:url" content="https://www.rego.com/">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="REGO - Modern Laptop Parts, Accessories and Service">
+  <meta name="twitter:description" content="Solusi terbaik untuk sparepart, aksesori dan perbaikan laptop dengan teknisi profesional.">
+  <meta name="twitter:image" content="https://source.unsplash.com/1200x630/?laptop,repair">
+
+  <!-- Favicon (opsional) -->
+  <link rel="icon" href="https://via.placeholder.com/32?text=REGO" type="image/png">
+
   <title>REGO - Modern Laptop Parts, Accessories and Service</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -213,7 +235,7 @@
       color: #555;
     }
 
-    /* Promo Section */
+    /* Kenapa Memilih Kami Section */
     .promo { background: #fff; }
     .promo h2 {
       text-align: center;
@@ -440,12 +462,12 @@
     </div>
   </section>
 
-  <!-- Promo Section -->
+  <!-- Kenapa Memilih Kami Section -->
   <section id="promo" class="promo">
     <div class="container">
       <h2 id="promo-title"></h2>
       <div class="promo-cards" id="promo-cards">
-        <!-- Promo di-generate dari JSON -->
+        <!-- Kenapa memilih kami di-generate dari JSON -->
       </div>
     </div>
   </section>
@@ -513,7 +535,7 @@
         {"name": "Layanan", "link": "#services"},
         {"name": "Tentang", "link": "#about"},
         {"name": "Produk", "link": "#produk"},
-        {"name": "Promo", "link": "#promo"},
+        {"name": "Kenapa Memilih Kami", "link": "#promo"},
         {"name": "FAQ", "link": "#faq"},
         {"name": "Partner", "link": "#partner"},
         {"name": "Lokasi", "link": "#lokasi"},
@@ -551,11 +573,28 @@
       ]
     },
     "promo": {
-      "title": "Promo & Diskon",
+      "title": "Kenapa Memilih Kami",
       "cards": [
-        {"title": "Diskon 10% untuk Servis Pertama", "desc": "Nikmati potongan harga untuk perbaikan laptop pertama Anda di REGO!"},
-        {"title": "Beli Sparepart Minimal 2, Gratis Ongkir", "desc": "Dapatkan gratis ongkir untuk pembelian sparepart minimal 2 item."},
-        {"title": "Special Bundle Aksesori", "desc": "Harga spesial untuk paket aksesori laptop pilihan Anda!"}
+        {
+          "title": "Jemput & Antar",
+          "desc": "Kami menyediakan layanan jemput dan antar mulai pukul 18.00 s/d 10.00, memastikan kenyamanan dan kecepatan layanan."
+        },
+        {
+          "title": "Rekomendasi Tepat",
+          "desc": "Tim kami akan carikan solusi yang tepat dan sesuai dengan kebutuhan spesifik Anda."
+        },
+        {
+          "title": "Nota Resmi",
+          "desc": "Setiap transaksi disertai dengan nota resmi sebagai bukti pembelian dan untuk menjaga transparansi layanan."
+        },
+        {
+          "title": "Garansi Terbaik",
+          "desc": "Layanan kami bergaransi dengan garansi terlama, dan jika terjadi masalah, langsung ganti baru tanpa ribet."
+        },
+        {
+          "title": "Fleksibilitas Harga",
+          "desc": "Kami siap bernegosiasi untuk memberikan penawaran terbaik yang sesuai dengan budget Anda."
+        }
       ]
     },
     "faq": {
@@ -651,7 +690,7 @@
         produkCards.appendChild(div);
       });
 
-      // Promo Section
+      // Kenapa Memilih Kami Section
       document.getElementById('promo-title').textContent = content.promo.title;
       const promoCards = document.getElementById('promo-cards');
       content.promo.cards.forEach(card => {
